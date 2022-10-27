@@ -4,7 +4,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddApplicationServices();
-builder.Services.AddInfrastructureServices(builder.Configuration);
+
+if (builder.Environment.EnvironmentName != "NSWAG") // don't configure infrastructure when we're running for nswag codegen 
+{
+    builder.Services.AddInfrastructureServices(builder.Configuration);
+}
+
 builder.Services.AddWebUIServices();
 builder.Services.AddLogging(loggingBuilder =>
 {
