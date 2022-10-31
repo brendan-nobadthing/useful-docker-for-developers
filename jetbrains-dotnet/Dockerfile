@@ -1,6 +1,9 @@
 FROM mcr.microsoft.com/dotnet/sdk:7.0-jammy
 
 # ssh install based on https://github.com/rastasheep/ubuntu-sshd/blob/master/18.04/Dockerfile
+RUN apt-get update -y
+RUN apt-get upgrade -y
+
 RUN apt-get install -y openssh-server
 RUN mkdir /var/run/sshd
 
