@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+  webui:
+    image: ${DOCKER_REGISTRY-}webui
+    build:
+      context: .
+      dockerfile: src/WebUI/Dockerfile.debug
+    ports:
+      - "44447:44447" 
+    environment: 
+      - "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES=Microsoft.AspNetCore.SpaProxy"
+    
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports: 
+      - 1433:1433
+    environment: 
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Password1234!
+    container_name: ca-mssql
+    volumes:
+      - "ca-mssql-data:/var/opt/mssql"
+
+
+volumes:
+  ca-mssql-data:
