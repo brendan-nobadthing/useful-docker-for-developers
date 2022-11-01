@@ -10,10 +10,6 @@ services:
       dockerfile: dev-env/Dockerfile
     volumes:
       - "ca-dev-env-code:/root/code"
-    environment:
-      ConnectionStrings__DefaultConnection: "Server=ca-mssql;Database=clean_architectureDb;User Id=sa;Password=Password1234!;Trust Server Certificate=True;"
-      Seq__ServerUrl: http://ca-seq:5341
-      UseInMemoryDatabase: false
 
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest

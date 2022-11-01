@@ -1,0 +1,9 @@
+version: '3.4'
+
+services:
+
+  ca-dev-env:
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=ca-mssql;Database=clean_architectureDb;User Id=sa;Password=Password1234!;Trust Server Certificate=True;"
+      Seq__ServerUrl: http://ca-seq:5341
+      UseInMemoryDatabase: false
