@@ -5,13 +5,8 @@ services:
     image: ${DOCKER_REGISTRY-}webui
     build:
       context: .
-      dockerfile: src/WebUI/Dockerfile.debug
-    ports:
-      - "44447:44447" 
-    environment: 
-      - "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES=Microsoft.AspNetCore.SpaProxy"
+      dockerfile: src/WebUI/Dockerfile 
     
-
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
     ports: 
