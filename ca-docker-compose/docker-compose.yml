@@ -18,7 +18,7 @@ services:
     environment: 
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=Password1234!
-    container_name: ca-mssql
+    container_name: ca7-mssql
     volumes:
       - "ca-mssql-data:/var/opt/mssql"
 
