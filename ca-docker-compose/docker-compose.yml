@@ -1,0 +1,41 @@
+version: '3.4'
+
+services:
+
+  ca-dev-env:
+    image: ca-dev-env
+    container_name: ca-dev-env
+    build:
+      context: .
+      dockerfile: dev-env/Dockerfile
+    volumes:
+      - "ca-dev-env-code:/root/code"
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports: 
+      - 1433:1433
+    environment: 
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Password1234!
+    container_name: ca7-mssql
+    volumes:
+      - "ca-mssql-data:/var/opt/mssql"
+
+  seq:
+    image: datalust/seq
+    container_name: ca-seq
+    ports: 
+      - 8041:80
+      - 5341:5341
+    environment: 
+      - ACCEPT_EULA=Y
+      - SEQ_FIRSTRUN_ADMINPASSWORDHASH=FAn6IOJN0ZfLkM5+te/TUBnsjiQ4zEPATkHCQxLn3S2vpWdNZA==
+    volumes:
+      - "ca-seq-data:/data"
+
+
+volumes:
+  ca-mssql-data:
+  ca-dev-env-code:
+  ca-seq-data:
